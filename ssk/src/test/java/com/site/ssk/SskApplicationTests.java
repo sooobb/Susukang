@@ -44,7 +44,6 @@ class SskApplicationTests {
 		/*
 		Optional<Account> oq = this.accountRepository.findById(1);
 		Account q = oq.get();
-		
 		Meeting m1 = new Meeting();
 		m1.setData("11111");
 		m1.setSummary_data("22222");
@@ -53,23 +52,20 @@ class SskApplicationTests {
 		m1.setAccount(q);
 		this.meetingRepository.save(m1);
 		*/
-		
-	        // Create credentials using a provider chain. For more information, see
-	        // https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html
-	        AWSCredentialsProvider awsCreds = DefaultAWSCredentialsProviderChain.getInstance();
-	        
-	        AmazonTranslate translate = AmazonTranslateClient.builder()
-	                .withCredentials(new AWSStaticCredentialsProvider(awsCreds.getCredentials()))
-	                .withRegion("ap-northeast-2")
-	                .build();
-	 
-	        TranslateTextRequest request = new TranslateTextRequest()
-	                .withText("Actionable Subsidies are not prohibited ")
-	                .withTerminologyNames("PORT")
-	                .withSourceLanguageCode("en")
-	                .withTargetLanguageCode("ko");
-	        TranslateTextResult result  = translate.translateText(request);
-	        System.out.println(result.getTranslatedText());
+AWSCredentialsProvider awsCreds = DefaultAWSCredentialsProviderChain.getInstance();
+        
+        AmazonTranslate translate = AmazonTranslateClient.builder()
+                .withCredentials(new AWSStaticCredentialsProvider(awsCreds.getCredentials()))
+                .withRegion("ap-northeast-2")
+                .build();
+ 
+        TranslateTextRequest request = new TranslateTextRequest()
+                .withText("Anti-circumvention refers to laws which prohibit the circumvention of technological barriers for using a digital good in certain ways which the rightsholders do not wish to allow.")
+                .withTerminologyNames("PORT")
+                .withSourceLanguageCode("en")
+                .withTargetLanguageCode("ko");
+        TranslateTextResult result  = translate.translateText(request);
+        
+        System.out.println(result.getTranslatedText());
 	}
-	    
 }
