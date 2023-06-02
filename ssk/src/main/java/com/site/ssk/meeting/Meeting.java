@@ -20,6 +20,7 @@ import lombok.Setter;
 public class Meeting {
 	@Id
     @Column
+	@GeneratedValue
     private String id;
 	
 	@Column(length = 20)
