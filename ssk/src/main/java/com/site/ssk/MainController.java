@@ -71,9 +71,10 @@ public class MainController {
                 .withTargetLanguageCode(t.TargetLanguageCode);
         TranslateTextResult result3  = translate.translateText(request3);
         System.out.println(result3.getTranslatedText());
-        System.out.println(result3.getAppliedTerminologies().get(0).getTerms().get(0).getSourceText());
-        String term = result3.getAppliedTerminologies().get(0).getTerms().get(0).getSourceText();
-        if (term != null) {
+        
+        if (result3.getAppliedTerminologies().size()!=0) { 
+        	System.out.println(result3.getAppliedTerminologies().get(0).getTerms().get(0).getSourceText());
+            String term = result3.getAppliedTerminologies().get(0).getTerms().get(0).getSourceText();
         	String targetTerm = result3.getAppliedTerminologies().get(0).getTerms().get(0).getTargetText();
             String modified = t.Text.replace(term, '[' + term + ']');
             System.out.println(modified);
