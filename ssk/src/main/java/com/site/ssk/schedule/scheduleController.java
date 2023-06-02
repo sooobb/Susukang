@@ -81,6 +81,9 @@ public class scheduleController {
 		schedule schedule = new schedule();
 		schedule.setAccount(q);
 	    requestData.forEach((key, value) -> {
+	    	if(key == "id") {
+				schedule.setId(value);
+			}
 			if(key == "data") {
 				schedule.setData(value);
 			}
@@ -96,7 +99,7 @@ public class scheduleController {
 	
 	// PATCH
 	@PatchMapping("schedule/patch/{id}")
-	public ResponseEntity<Meeting> update(@PathVariable int id, @RequestBody Map<String,String> requestData) {
+	public ResponseEntity<Meeting> update(@PathVariable String id, @RequestBody Map<String,String> requestData) {
 		schedule target = scheduleRepository.findById(id).orElse(null);		
 		if(target == null ) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

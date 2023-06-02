@@ -19,8 +19,8 @@ import lombok.Setter;
 @Entity 
 public class Meeting {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column
+    private String id;
 	
 	@Column(length = 20)
 	private String title;
@@ -31,7 +31,8 @@ public class Meeting {
     @Column(columnDefinition = "TEXT")
     private String summary_data;
 
-    private LocalDateTime createDate;
+    @Column
+    private String createDate;
     
     @Column(length = 20)
 	private String category;

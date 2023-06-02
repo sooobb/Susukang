@@ -65,6 +65,7 @@ public class MeetingController {
 			Meeting meeting = meetings.get(i);
 			if(meeting.getAccount().getAccountid().equals(accountid)) {
 				Meeting data = new Meeting();
+				data.setId(meeting.getId());
 				data.setTitle(meeting.getTitle());
 				data.setData(meeting.getData());
 				data.setSummary_data(meeting.getSummary_data());
@@ -85,8 +86,13 @@ public class MeetingController {
 		Account q = oq.get();
 	    Meeting meeting = new Meeting();
 	    meeting.setAccount(q);
-	    meeting.setCreateDate(LocalDateTime.now());
 	    requestData.forEach((key, value) -> {
+	    	if(key == "meetingid") {
+				meeting.setId(value);
+			}
+	    	if(key == "create_date") {
+				meeting.setCreateDate(value);
+			}
 			if(key == "data") {
 				meeting.setData(value);
 			}
@@ -130,9 +136,9 @@ public class MeetingController {
 	
 	
 	//DELETE
-	@DeleteMapping("/meeting/delete/{id}")
-	public ResponseEntity<Meeting> delete(@PathVariable int id) {
-		Meeting target = meetingRepository.findById(id).orElse(null);	// id대상이 없으면 null 반환	
+	@DeleteMapping("/meeting/delete/{meetingid}")
+	public ResponseEntity<Meeting> delete(@PathVariable String meetingid) {
+		Meeting target = meetingRepository.findById(meetingid).orElse(null);	// id대상이 없으면 null 반환	
 		if(target == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}

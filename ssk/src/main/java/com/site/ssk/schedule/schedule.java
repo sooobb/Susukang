@@ -20,8 +20,7 @@ import lombok.Setter;
 @Entity 
 public class schedule {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
 	
 	@Column(length = 20)
 	private String title;
