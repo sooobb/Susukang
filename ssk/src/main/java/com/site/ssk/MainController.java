@@ -37,7 +37,7 @@ import lombok.RequiredArgsConstructor;
 @RestController	// RestApi용 컨트롤러, 데이터(JSON)반환
 public class MainController {
 	
-	@PatchMapping("/translate")
+	@PostMapping("/translate")
 	public String create(@RequestBody Map<String,String> requestData) {
 		
 		translate t = new translate();
@@ -73,18 +73,21 @@ public class MainController {
         System.out.println(result3.getTranslatedText());
         System.out.println(result3.getAppliedTerminologies().get(0).getTerms().get(0).getSourceText());
         String term = result3.getAppliedTerminologies().get(0).getTerms().get(0).getSourceText();
-        String targetTerm = result3.getAppliedTerminologies().get(0).getTerms().get(0).getTargetText();
-        String modified = t.Text.replace(term, '[' + term + ']');
-        System.out.println(modified);
-        TranslateTextRequest modifiedRequest = new TranslateTextRequest()
-                .withText(modified)
-                .withTerminologyNames(t.TerminologyNames)
-                .withSourceLanguageCode(t.SourceLanguageCode)
-                .withTargetLanguageCode(t.TargetLanguageCode);
-        TranslateTextResult modifiedResult = translate.translateText(modifiedRequest);
-        String modifiedText = modifiedResult.getTranslatedText();
-        int targetIndex = modifiedText.indexOf(targetTerm); 
-        String result = modifiedText.substring(0,targetIndex-1) + targetTerm + modifiedText.substring(targetIndex + targetTerm.length() +2);
-        return result;
+        if (term != null) {
+        	String targetTerm = result3.getAppliedTerminologies().get(0).getTerms().get(0).getTargetText();
+            String modified = t.Text.replace(term, '[' + term + ']');
+            System.out.println(modified);
+            TranslateTextRequest modifiedRequest = new TranslateTextRequest()
+                    .withText(modified)
+                    .withTerminologyNames(t.TerminologyNames)
+                    .withSourceLanguageCode(t.SourceLanguageCode)
+                    .withTargetLanguageCode(t.TargetLanguageCode);
+            TranslateTextResult modifiedResult = translate.translateText(modifiedRequest);
+            String modifiedText = modifiedResult.getTranslatedText();
+            int targetIndex = modifiedText.indexOf(targetTerm); 
+            String result = modifiedText.substring(0,targetIndex-1) + targetTerm + modifiedText.substring(targetIndex + targetTerm.length() +2);
+            return result;
+        }
+        else return result3.getTranslatedText();
 	}
 }
