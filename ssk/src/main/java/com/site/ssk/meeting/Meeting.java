@@ -20,7 +20,7 @@ import lombok.Setter;
 public class Meeting {
 	@Id
     @Column
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private String id;
 	
 	@Column(length = 20)
