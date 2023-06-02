@@ -47,7 +47,7 @@ public class scheduleController {
 			schedule schedule = scheduleList.get(i);
 			schedule data = new schedule();
 			data.setTitle(schedule.getTitle());
-			data.setData(schedule.getData());
+			data.setTime(schedule.getTime());
 			data.setId(schedule.getId());
 			data.setDate(schedule.getDate());
 			returnList.add(data);
@@ -64,7 +64,7 @@ public class scheduleController {
 			if(schedule.getAccount().getAccountid().equals(accountid)) {
 				schedule data = new schedule();
 				data.setTitle(schedule.getTitle());
-				data.setData(schedule.getData());
+				data.setTime(schedule.getTime());
 				data.setId(schedule.getId());
 				data.setDate(schedule.getDate());
 				returnList.add(data);
@@ -82,10 +82,10 @@ public class scheduleController {
 		schedule.setAccount(q);
 	    requestData.forEach((key, value) -> {
 	    	if(key == "id") {
-				schedule.setId(value);
+				schedule.setId(Integer.parseInt(value));
 			}
 			if(key == "data") {
-				schedule.setData(value);
+				schedule.setTime(value);
 			}
 			if(key == "date") {
 				schedule.setDate(value);
@@ -106,8 +106,8 @@ public class scheduleController {
 		}
 		schedule schedule = new schedule();	    
 		requestData.forEach((key, value) -> {
-			if(key == "data") {
-				schedule.setData(value);
+			if(key == "time") {
+				schedule.setTime(value);
 			}
 			if(key == "title") {
 				schedule.setTitle(value);
