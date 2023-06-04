@@ -128,6 +128,9 @@ public class MeetingController {
 			if(key == "category") {
 				meeting.setCategory(value);
 			}
+			if(key == "date") {
+				meeting.setDate(value);
+			}
 	    });	
 	    target.patch(meeting);
 		Meeting updated = meetingRepository.save(target);

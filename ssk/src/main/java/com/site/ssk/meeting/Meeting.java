@@ -47,6 +47,8 @@ public class Meeting {
 			this.data = meeting.data;
 		if(meeting.category!=null)
 			this.category = meeting.category;
+		if(meeting.Date!=null)
+			this.Date = meeting.Date;
 		
 	}
 }
