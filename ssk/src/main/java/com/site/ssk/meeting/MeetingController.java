@@ -112,8 +112,8 @@ public class MeetingController {
 	
 	// PATCH
 	@PatchMapping("/meeting/patch/{id}")
-	public ResponseEntity<Meeting> update(@PathVariable int id, @RequestBody Map<String,String> requestData) {
-		Meeting target = meetingRepository.findById(id).orElse(null);		
+	public ResponseEntity<Meeting> update(@PathVariable String id, @RequestBody Map<String,String> requestData) {
+		Meeting target = meetingRepository.findByMeetingid(id).orElse(null);		
 		if(target == null ) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
