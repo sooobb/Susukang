@@ -24,10 +24,10 @@ import lombok.Setter;
 @Entity
 public class Account {
 	
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 	
-	@Id
 	@Column(unique = true)
     private String accountid;
 
