@@ -10,6 +10,6 @@ import com.site.ssk.account.Account;
 public interface MeetingRepository extends JpaRepository<Meeting, Integer> {
 	List<Meeting> findByAccountId(String accountid);
 	List<Meeting> findByTitleLike(String title);
-	Optional<Meeting> findById(String id);
+	Optional<Meeting> findByMeetingid(String id);
 	
 }

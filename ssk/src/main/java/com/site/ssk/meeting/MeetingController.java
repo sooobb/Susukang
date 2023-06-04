@@ -27,7 +27,7 @@ import com.site.ssk.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@RestController	// RestApi용 컨트롤러, 데이터(JSON)반환
+@RestController	// RestApi용 컨트롤러, 데이터(JSON)반환t
 public class MeetingController {
 	
 	@Autowired
@@ -49,9 +49,9 @@ public class MeetingController {
 			data.setTitle(meeting.getTitle());
 			data.setData(meeting.getData());
 			data.setSummary_data(meeting.getSummary_data());
-			data.setId(meeting.getId());
+			data.setMeetingid(meeting.getMeetingid());
 			data.setCategory(meeting.getCategory());
-			data.setCreateDate(meeting.getCreateDate());
+			data.setDate(meeting.getDate());
 			returnList.add(data);
 		}
 		return returnList;
@@ -65,13 +65,13 @@ public class MeetingController {
 			Meeting meeting = meetings.get(i);
 			if(meeting.getAccount().getAccountid().equals(accountid)) {
 				Meeting data = new Meeting();
-				data.setId(meeting.getId());
+				data.setMeetingid(meeting.getMeetingid());
 				data.setTitle(meeting.getTitle());
 				data.setData(meeting.getData());
 				data.setSummary_data(meeting.getSummary_data());
-				data.setId(meeting.getId());
+				data.setMeetingid(meeting.getMeetingid());
 				data.setCategory(meeting.getCategory());
-				data.setCreateDate(meeting.getCreateDate());
+				data.setDate(meeting.getDate());
 				returnList.add(data);
 			}
 		}
@@ -88,10 +88,10 @@ public class MeetingController {
 	    meeting.setAccount(q);
 	    requestData.forEach((key, value) -> {
 	    	if(key == "meetingid") {
-				meeting.setId(value);
+				meeting.setMeetingid(value);
 			}
 	    	if(key == "create_date") {
-				meeting.setCreateDate(value);
+				meeting.setDate(value);
 			}
 			if(key == "data") {
 				meeting.setData(value);
@@ -122,7 +122,7 @@ public class MeetingController {
 			if(key == "data") {
 				meeting.setData(value);
 			}
-			if(key == "title") {
+			if(key == "title") { 
 				meeting.setTitle(value);
 			}
 			if(key == "category") {
@@ -138,7 +138,7 @@ public class MeetingController {
 	//DELETE
 	@DeleteMapping("/meeting/delete/{meetingid}")
 	public ResponseEntity<Meeting> delete(@PathVariable String meetingid) {
-		Meeting target = meetingRepository.findById(meetingid).orElse(null);	// id대상이 없으면 null 반환	
+		Meeting target = meetingRepository.findByMeetingid(meetingid).orElse(null);	// id대상이 없으면 null 반환	
 		if(target == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}

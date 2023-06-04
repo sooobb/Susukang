@@ -84,7 +84,7 @@ public class scheduleController {
 	    	if(key == "id") {
 				schedule.setId(Integer.parseInt(value));
 			}
-			if(key == "data") {
+			if(key == "time") {
 				schedule.setTime(value);
 			}
 			if(key == "date") {
