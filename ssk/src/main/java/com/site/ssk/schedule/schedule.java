@@ -37,6 +37,10 @@ public class schedule {
 	public void patch(schedule schedule) {
 		if(schedule.title!=null)
 			this.title = schedule.title;
+		if(schedule.time!=null)
+			this.time = schedule.time;
+		if(schedule.date!=null)
+			this.date = schedule.date;
 	}
 	
 }
