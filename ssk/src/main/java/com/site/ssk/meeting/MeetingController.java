@@ -90,7 +90,7 @@ public class MeetingController {
 	    	if(key == "meetingid") {
 				meeting.setMeetingid(value);
 			}
-	    	if(key == "create_date") {
+	    	if(key == "date") {
 				meeting.setDate(value);
 			}
 			if(key == "data") {

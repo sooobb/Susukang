@@ -72,7 +72,7 @@ public class MainController {
         TranslateTextResult result3  = translate.translateText(request3);
         System.out.println(result3.getTranslatedText());
         
-        if (result3.getAppliedTerminologies().size()!=0) { 
+        if (result3.getAppliedTerminologies().size()!=0 && t.SourceLanguageCode=="ko") { 
         	System.out.println(result3.getAppliedTerminologies().get(0).getTerms().get(0).getSourceText());
             String term = result3.getAppliedTerminologies().get(0).getTerms().get(0).getSourceText();
         	String targetTerm = result3.getAppliedTerminologies().get(0).getTerms().get(0).getTargetText();
