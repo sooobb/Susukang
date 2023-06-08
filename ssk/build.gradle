@@ -17,7 +17,6 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.projectlombok:lombok'
-	implementation 'org.springframework.boot:spring-boot-starter-freemarker'
     annotationProcessor 'org.projectlombok:lombok'
     implementation 'com.h2database:h2'
 	//runtimeOnly 'com.h2database:h2'
@@ -26,8 +25,6 @@ dependencies {
 	implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.1000')
 	implementation 'com.amazonaws:aws-java-sdk-s3'
 	implementation ('com.amazonaws:aws-java-sdk-translate:1.12.479')
-	implementation 'org.springframework.boot:spring-boot-starter-websocket'
-	implementation 'org.json:json:20200518'
 }
 
 tasks.named('test') {
