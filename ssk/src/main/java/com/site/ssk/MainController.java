@@ -64,34 +64,23 @@ public class MainController {
                 .withCredentials(new AWSStaticCredentialsProvider(awsCreds.getCredentials()))
                 .withRegion("ap-northeast-2")
                 .build();
-        // String text = "Anti-circumvention refers to laws which prohibit the circumvention of technological barriers for using a digital good in certain ways which the rightsholders do not wish to allow.";
-        // 서버야 번역해줘
+
         TranslateTextRequest request3 = new TranslateTextRequest()
                 .withText(t.Text)
                 .withTerminologyNames(t.TerminologyNames)
                 .withSourceLanguageCode(t.SourceLanguageCode)
                 .withTargetLanguageCode(t.TargetLanguageCode);
         TranslateTextResult result3  = translate.translateText(request3);
-        // result3이 순수하게 번역된 문장
+
         System.out.println("그냥번역: " + result3.getTranslatedText());
         
        
-        int termsize = result3.getAppliedTerminologies().get(0).getTerms().size();
-        System.out.println("termsize : " + termsize);
-        
-        for(int i = 0; i < termsize ; i++) {
-        	String source = result3.getAppliedTerminologies().get(0).getTerms().get(i).getSourceText();
-        	String target = result3.getAppliedTerminologies().get(0).getTerms().get(i).getTargetText();
-        	System.out.println(source + target);
-        }
-        
-        // modified는 순수번역 문장에서 
+
         String modified = t.Text;
-        if(t.SourceLanguageCode.equals("en")) {
-        	System.out.println("영어를 한국어로");
-        	
-        	if (result3.getAppliedTerminologies().get(0).getTerms().size()!=0) { 
-            	System.out.println("fadfasfasdfasfsdafasdfasdfasdf");
+
+       
+        	if (result3.getAppliedTerminologies().size()!=0 && t.SourceLanguageCode.equals("en")) { 
+        		int termsize = result3.getAppliedTerminologies().get(0).getTerms().size();
             	String term = "";
             	String targetTerm = "";
             	for(int i = 0; i < termsize ; i++) {
@@ -115,7 +104,6 @@ public class MainController {
                 System.out.println("result : "+ result);
                 return result;
             } else return result3.getTranslatedText();
-        } else return result3.getTranslatedText();
             
 	}
 }
